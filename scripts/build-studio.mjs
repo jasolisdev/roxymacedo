@@ -7,6 +7,7 @@ const sanityDir = path.join(rootDir, "sanity");
 const sanityNodeModules = path.join(sanityDir, "node_modules");
 const sanityDist = path.join(sanityDir, "dist");
 const outDir = path.join(rootDir, "dist", "studio");
+const staticOutDir = path.join(rootDir, "dist", "static");
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, { stdio: "inherit", ...options });
@@ -41,8 +42,14 @@ if (!fs.existsSync(sanityNodeModules)) {
 run("npm", ["--prefix", "sanity", "run", "build"], { env });
 
 fs.rmSync(outDir, { recursive: true, force: true });
+fs.rmSync(staticOutDir, { recursive: true, force: true });
 if (!fs.existsSync(sanityDist)) {
   console.error("Expected Sanity build output at sanity/dist, but it was not found.");
   process.exit(1);
 }
 copyDir(sanityDist, outDir);
+
+const sanityStaticDir = path.join(sanityDist, "static");
+if (fs.existsSync(sanityStaticDir)) {
+  copyDir(sanityStaticDir, staticOutDir);
+}
