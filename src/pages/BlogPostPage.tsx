@@ -92,7 +92,7 @@ export const BlogPostPage: React.FC = () => {
           {post.heroImageUrl ? (
             <img src={post.heroImageUrl} alt={post.title} className="w-full h-56 object-cover" loading="lazy" />
           ) : null}
-          <div className="p-6 sm:p-8">
+          <div className="p-6 sm:p-8 animate-fade-in-down">
             <h1 className="text-4xl font-script font-bold text-baker-brown">{post.title}</h1>
             {post.date ? <p className="mt-2 text-sm text-gray-500">{formatDate(post.date)}</p> : null}
 
