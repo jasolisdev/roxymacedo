@@ -13,8 +13,7 @@ export const blogPosts: BlogPost[] = [
     title: "Welcome",
     date: "2025-12-15",
     excerpt: "A quick hello and what you can expect here.",
-    heroImageUrl:
-      "https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&q=80&w=1600",
+    heroImageUrl: "/welcome-blog.webp",
     content: [
       { type: "p", text: "Hi! I’m Roxy — welcome to my little home on the internet." },
       {
@@ -28,4 +27,3 @@ export const blogPosts: BlogPost[] = [
 export function getPostBySlug(slug: string) {
   return blogPosts.find((p) => p.slug === slug);
 }
-
