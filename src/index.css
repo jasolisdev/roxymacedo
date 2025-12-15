@@ -10,3 +10,26 @@
   }
 }
 
+@keyframes kenburns-featured {
+  0% {
+    transform: scale(1.05) translate3d(0%, 0%, 0);
+  }
+  100% {
+    transform: scale(1.18) translate3d(-2%, -2%, 0);
+  }
+}
+
+@layer utilities {
+  .kenburns-featured {
+    animation: kenburns-featured 18s ease-in-out infinite alternate;
+    transform-origin: center;
+    will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kenburns-featured {
+    animation: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "roxymacedo-sanity-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "seed": "node ./seed.mjs"
+  },
+  "dependencies": {
+    "@sanity/vision": "^4.6.0",
+    "sanity": "^4.6.0",
+    "styled-components": "^6.1.19"
+  }
+}

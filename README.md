@@ -9,15 +9,41 @@ npm install
 npm run dev
 ```
 
-## Customize links
+## CMS (Sanity)
 
-Edit `src/content/profile.tsx`.
+- Frontend reads from Sanity using `VITE_SANITY_PROJECT_ID` + `VITE_SANITY_DATASET` (see `.env.example`).
+- Sanity Studio lives in `sanity/` (see `sanity/.env.example`).
+  - Newsletter signup uses `/api/subscribe` and requires a server-side `SANITY_WRITE_TOKEN` (see `.env.example`).
 
-To add a profile photo, put an image in `public/` (example: `public/avatar.jpg`) and set `avatarUrl: "/avatar.jpg"`.
+### Run Sanity Studio
+
+```bash
+cd sanity
+npm install
+cp .env.example .env
+npm run dev
+```
+
+### Content model
+
+- Create one `Home Page` document and fill in profile + links + (optional) featured post.
+- Create `Blog Post` documents for blog entries.
+  - Newsletter subscribers are stored as `Newsletter Subscriber` documents when people use the Subscribe form.
+
+### Seed the initial Home Page (optional)
+
+If you don’t want to manually create the Home Page document, you can seed it once:
+
+```bash
+cd sanity
+cp .env.example .env
+# add SANITY_WRITE_TOKEN in your environment (Sanity Manage → API → Tokens)
+npm run seed
+```
 
 ## Blog
 
-Edit posts in `src/content/blog.ts`.
+If Sanity env vars are set, the site loads posts from Sanity. If not, it falls back to `src/content/blog.ts` and `src/content/profile.tsx`.
 
 ## Deploy (Vercel)
 

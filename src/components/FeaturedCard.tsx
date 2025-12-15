@@ -21,6 +21,8 @@ export const FeaturedCard: React.FC<FeaturedCardProps> = ({
   imageAlt,
   cta,
 }) => {
+  const [isImageLoaded, setIsImageLoaded] = React.useState(false);
+
   return (
     <Link to={to} className="w-full max-w-md mb-6 group cursor-pointer">
       <div className="relative overflow-hidden rounded-2xl bg-white shadow-md border-2 border-sage/50 transition-all duration-300 hover:shadow-xl hover:border-sage hover:-translate-y-1">
@@ -30,13 +32,26 @@ export const FeaturedCard: React.FC<FeaturedCardProps> = ({
         </div>
 
         <div className="h-48 overflow-hidden relative">
-          <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-          <img
-            src={imageUrl}
-            alt={imageAlt}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-            loading="lazy"
+          <div
+            className={[
+              "absolute inset-0 bg-gray-200 transition-opacity duration-500",
+              isImageLoaded ? "opacity-0" : "opacity-100 animate-pulse",
+            ].join(" ")}
           />
+          <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105">
+            <img
+              src={imageUrl}
+              alt={imageAlt}
+              className={[
+                "w-full h-full object-cover kenburns-featured transition-opacity duration-700",
+                "motion-reduce:transition-none",
+                isImageLoaded ? "opacity-100" : "opacity-0",
+              ].join(" ")}
+              loading="eager"
+              onLoad={() => setIsImageLoaded(true)}
+              onError={() => setIsImageLoaded(true)}
+            />
+          </div>
           <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black/60 to-transparent" />
         </div>
 
