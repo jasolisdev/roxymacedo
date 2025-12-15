@@ -24,6 +24,8 @@ cp .env.example .env
 npm run dev
 ```
 
+Studio runs at `http://localhost:3333/studio`.
+
 ### Content model
 
 - Create one `Home Page` document and fill in profile + links + (optional) featured post.
@@ -51,3 +53,5 @@ If Sanity env vars are set, the site loads posts from Sanity. If not, it falls b
 - Framework preset: Vite
 - Build command: `npm run build`
 - Output directory: `dist`
+
+After deploy, Studio is served from the same site at `/studio`.

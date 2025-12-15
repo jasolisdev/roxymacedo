@@ -3,6 +3,7 @@ dist
 .vercel
 .DS_Store
 .sanity
+sanity/.config
 .env
 .env.*
 .env*.local

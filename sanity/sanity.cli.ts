@@ -1,11 +1,6 @@
-import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
-import { visionTool } from "@sanity/vision";
+import { defineCliConfig } from "sanity/cli";
 import fs from "node:fs";
 import path from "node:path";
-
-import { schemaTypes } from "./schemaTypes";
-import { structure } from "./deskStructure";
 
 function loadDotEnv(envPath: string) {
   if (!fs.existsSync(envPath)) return;
@@ -42,12 +37,6 @@ if (!projectId || !dataset) {
   );
 }
 
-export default defineConfig({
-  name: "default",
-  title: "Roxy Macedo",
-  projectId,
-  dataset,
-  basePath: "/studio",
-  plugins: [deskTool({ structure }), visionTool()],
-  schema: { types: schemaTypes },
+export default defineCliConfig({
+  api: { projectId, dataset },
 });
